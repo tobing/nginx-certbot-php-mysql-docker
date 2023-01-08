@@ -9,8 +9,8 @@ services:
       - "443:443"
     volumes:
       - ./public:/var/www/public      
-      #- ./nginx.localhost:/etc/nginx/conf.d #uncomment this line if certbot generate for the first time and run ./init-letsencrypt.sh
-      - ./nginx:/etc/nginx/conf.d #uncomment this line after certbot generated cert & comment line above. Then run docker-compose up/docker-compose up -d
+      - ./nginx.localhost:/etc/nginx/conf.d #uncomment this line if certbot generate for the first time and run ./init-letsencrypt.sh
+      #- ./nginx:/etc/nginx/conf.d #uncomment this line after certbot generated cert & comment line above. Then run docker-compose up/docker-compose up -d
       - ./certbot/conf:/etc/letsencrypt
       - ./certbot/www:/var/www/certbot
     environment: 
