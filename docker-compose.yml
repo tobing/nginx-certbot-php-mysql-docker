@@ -1,0 +1,69 @@
+version: '3'
+services:
+
+  nginx:
+    image: nginx:1.23-alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./public:/var/www/public      
+      #- ./nginx.localhost:/etc/nginx/conf.d #uncomment this line if certbot generate for the first time and run ./init-letsencrypt.sh
+      - ./nginx:/etc/nginx/conf.d #uncomment this line after certbot generated cert & comment line above. Then run docker-compose up/docker-compose up -d
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
+    environment: 
+      - TZ=Asia/Jakarta
+    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
+    
+  certbot:
+    image: certbot/certbot
+    restart: unless-stopped
+    volumes:
+      - ./certbot/conf/:/etc/letsencrypt
+      - ./certbot/logs/:/var/log/letsencrypt
+      - ./certbot/www:/var/www/certbot
+    depends_on:
+      - nginx
+    environment: 
+      - TZ=Asia/Jakarta
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+
+  php:
+    build:
+      context: .
+      dockerfile: php/Dockerfile
+    volumes:
+      - .:/var/www
+    environment: 
+      - TZ=Asia/Jakarta
+
+  mysql:
+    image: mysql:8
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=0123456789
+      - MYSQL_USER=dbuser
+      - MYSQL_PASSWORD=9876543210
+      - MYSQL_DATABASE=dbname
+      - TZ=Asia/Jakarta
+    volumes:
+      - "mysql_data:/var/lib/mysql"  
+      
+  pgsql:
+    image: postgres:15-alpine
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=example
+      - TZ=Asia/Jakarta
+    volumes:
+      - "pgsql_data:/var/lib/postgresql/data" 
+
+volumes:
+  mysql_data: { driver: local }
+  pgsql_data: { driver: local }
