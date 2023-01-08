@@ -1,4 +1,4 @@
-# Nginx, Php-fpm and MySQL/PostgreSQL stack with Certbot from Docker compose
+# Nginx, Php-fpm and MySQL/PostgreSQL stack with Certbot from docker-compose.yml
 
 
 > This repository is accompanied by a step-by-step guide on [Boilerplate for nginx with Let’s Encrypt on docker-compose](https://github.com/wmnnd/nginx-certbot).
