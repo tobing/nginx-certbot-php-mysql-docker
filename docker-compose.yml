@@ -36,11 +36,13 @@ services:
       dockerfile: php/Dockerfile
     volumes:
       - .:/var/www
+    restart: unless-stopped
     environment: 
       - TZ=Asia/Jakarta
 
   mysql:
     image: mysql:8
+    restart: unless-stopped
     ports:
       - "3306:3306"
     environment:
