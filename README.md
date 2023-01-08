@@ -46,7 +46,7 @@ You can customize the versions from ```docker-compose.yml``` and ```/php/Dockerf
 
 ## Exclude MySQL or PostgreSQL
 
-Remove these sections from ```docker-compose.yml``` before run ```docker-compose up```
+Remove these sections from ```docker-compose.yml``` before run ```docker-compose up -d```
 ### MySQL
 ```
 mysql:
