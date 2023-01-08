@@ -14,10 +14,10 @@ This repository to create Nginx, Php-fpm and MySQL/PostgreSQL stack with Certbot
 2. Clone this repository: ``` git clone https://github.com/tobing/nginx-certbot-php-mysql-docker.git```
 
 3. Modify configuration:
-- Add domains and email addresses to ```init-letsencrypt.sh```
+- Replace domains and email addresses to ```init-letsencrypt.sh```
 - Replace all occurrences of example.org with primary domain in ```/nginx/app.conf``` and ```/nginx.localhost/app.conf```
 - Uncomment ```- ./nginx.localhost:/etc/nginx/conf.d``` and comment ```- ./nginx:/etc/nginx/conf.d``` in docker-compose.yml file. This setting to generate certificate for the first time
-4. Run the init script: ```./init-letsencrypt.sh``` (set staging=1 for testing your setup to avoid Let's Encrypt request limits)
+4. ```chmod +x init-letsencrypt.sh``` then run the init script: ```./init-letsencrypt.sh``` (set staging=1 for testing your setup to avoid Let's Encrypt request limits)
 
 5. Comment ```- ./nginx.localhost:/etc/nginx/conf.d``` and uncomment ```- ./nginx:/etc/nginx/conf.d``` in docker-compose.yml file.
  
