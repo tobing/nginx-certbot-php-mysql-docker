@@ -1,6 +1,6 @@
 # Nginx, Php-fpm and MySQL/PostgreSQL stack with Certbot from docker-compose.yml
 
-This repo to create Nginx, Php-fpm and MySQL/PostgreSQL stack with Certbot from docker-compose.yml file.
+This repository to create Nginx, Php-fpm and MySQL/PostgreSQL stack with Certbot from docker-compose.yml file.
 
 
 
