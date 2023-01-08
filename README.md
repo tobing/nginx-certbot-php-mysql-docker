@@ -17,7 +17,7 @@ This repo to create Nginx, Php-fpm and MySQL/PostgreSQL stack with Certbot from 
 - Add domains and email addresses to init-letsencrypt.sh
 - Replace all occurrences of example.org with primary domain in ```/nginx/app.conf``` and ```/nginx.localhost/app.conf```
 - Uncomment ```- ./nginx.localhost:/etc/nginx/conf.d``` and comment ```- ./nginx:/etc/nginx/conf.d``` in docker-compose.yml file. This setting to generate certificate for the first time
-4. Run the init script: ```./init-letsencrypt.sh```
+4. Run the init script: ```./init-letsencrypt.sh``` (set staging=1 for testing your setup to avoid Let's Encrypt request limits)
 
 5. Comment ```- ./nginx.localhost:/etc/nginx/conf.d``` and uncomment ```- ./nginx:/etc/nginx/conf.d``` in docker-compose.yml file.
  
@@ -34,3 +34,11 @@ PHP image including composer and these addional modules so need some time to com
 - pdo_pgsql
 - pgsql
 - zip
+
+## Stack
+- nginx:1.23-alpine
+- certbot/certbot
+- php:8-fpm-alpine
+- mysql:8
+
+You can customize the versions from ```docker-compose.yml``` and ```/php/Dockerfile```
