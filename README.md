@@ -47,7 +47,7 @@ You can customize the versions from ```docker-compose.yml``` and ```/php/Dockerf
 ## Exclude MySQL or PostgreSQL
 
 Remove these sections from ```docker-compose.yml``` before run ```docker-compose up -d```
-### MySQL
+#### MySQL
 ```
 mysql:
     image: mysql:8
@@ -67,7 +67,7 @@ mysql:
 mysql_data: { driver: local }
 ```
 
-### PostgreSQL
+#### PostgreSQL
 ```
 pgsql:
     image: postgres:15-alpine
