@@ -21,7 +21,7 @@ This repository to create Nginx, Php-fpm and MySQL/PostgreSQL stack with Certbot
 
 5. Comment ```- ./nginx.localhost:/etc/nginx/conf.d``` and uncomment ```- ./nginx:/etc/nginx/conf.d``` in docker-compose.yml file.
  
-6. Run the server: ```docker-compose up```
+6. Run the server: ```docker-compose up -d```
 
 ## PHP
 PHP image including composer and these addional modules so need some time to compile. You can customize them from ```/php/Dockerfile```
