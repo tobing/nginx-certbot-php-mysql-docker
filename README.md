@@ -52,7 +52,7 @@ Remove these sections from ```docker-compose.yml``` before run ```docker-compose
 mysql:
     image: mysql:8
     ports:
-      - "6603:3306"
+      - "3306:3306"
     environment:
       - MYSQL_ROOT_PASSWORD=0123456789
       - MYSQL_USER=dbuser
