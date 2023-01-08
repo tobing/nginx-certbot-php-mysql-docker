@@ -40,5 +40,48 @@ PHP image including composer and these addional modules so need some time to com
 - certbot/certbot
 - php:8-fpm-alpine
 - mysql:8
+- postgres:15-alpine
 
 You can customize the versions from ```docker-compose.yml``` and ```/php/Dockerfile```
+
+## Exclude MySQL or PostgreSQL
+
+Remove these sections from ```docker-compose.yml``` before run ```docker-compose up```
+### MySQL
+```
+mysql:
+    image: mysql:8
+    ports:
+      - "6603:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=0123456789
+      - MYSQL_USER=dbuser
+      - MYSQL_PASSWORD=9876543210
+      - MYSQL_DATABASE=dbname
+      - TZ=Asia/Jakarta
+    volumes:
+      - "mysql_data:/var/lib/mysql" 
+```
+
+```
+mysql_data: { driver: local }
+```
+
+### PostgreSQL
+```
+pgsql:
+    image: postgres:15-alpine
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=example
+      - TZ=Asia/Jakarta
+    volumes:
+      - "pgsql_data:/var/lib/postgresql/data" 
+```
+
+```
+pgsql_data: { driver: local }
+```
