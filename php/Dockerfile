@@ -1,5 +1,5 @@
 FROM php:8-fpm-alpine
-LABEL Maintainer="Tobing <lumban.tobing.m@gmail.com>" \
+LABEL Maintainer="Tobing <lumban.tobing.m@gmail.com>"
 	
 RUN apk update && apk add curl && \
   curl -sS https://getcomposer.org/installer | php \
